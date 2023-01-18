@@ -69,33 +69,50 @@ Array &operator+(int val) //ориентируемся на знак после 
    return *this; 
 } 
 
-bool operator<(Array other) 
+bool operator<(const Array &other) 
 {
     return this->size < other.size; 
 } 
 
-bool operator>(Array other) 
+bool operator>(const Array &other) 
 {
     return this->size > other.size; 
 } 
-bool operator>=(Array other) 
+bool operator>=(const Array &other) 
 {
     return this->size >= other.size; 
 }
-bool operator<=(Array other) 
+bool operator<=(const Array &other) 
 {
     return this->size <= other.size; 
-}
+} 
+
+Array& operator-(const Array &other) 
+{ 
+    if (this->size< other.size) 
+    {
+        for (int j = 0 ; j < other.size - this->size; j++) 
+        this->add_back(0);  
+
+         for (int i=0; i< other.size; i++) 
+      { 
+          this->arr[i]-=other.arr[i]; 
+      }
+    } 
+    else 
+    { for (int i=0; i<this->size && i< other.size; i++) 
+    {
+        this->arr[i]-=other.arr[i];
+    } }
 
 
+} 
 }; 
 
 int main()
 {
     Array arr(15); 
-     arr.print(); 
-    Array arr1(10); 
-     arr1.print(); 
+    Array arr1(10);
 
     arr.add_back(1); 
     arr.add_back(2); 
@@ -105,13 +122,7 @@ int main()
     arr.print(); 
      
     arr.insert(1, 22); 
-    arr.print();  
-
-
-    arr.insert(32, 22); 
-    arr.print();  
-    std::cout<<"\n";  
-     
+    arr.print();   
 
     arr.erase(3);
      arr.print();  
@@ -121,11 +132,18 @@ int main()
     arr.print();  
     std::cout<<"\n";   
     
+    arr1 + 1+2+3+10+5+7+4+9; 
+    arr1.print();  
+    std::cout<<"\n";
 
     arr - 2 -3- 7; 
     arr.print(); 
     std::cout<<"\n";  
 
-    arr > arr1; 
+   if ( arr > arr1) 
+     std::cout<<"arr > arr1 \n"; 
+
+    arr - arr1; 
+    arr.print(); 
 
 }
