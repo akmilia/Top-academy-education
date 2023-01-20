@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
-using namespace std;
+using namespace std; 
+//тут где-то проблема с размерностью нового массива, из-за чего пропадает 1 элемент
+//я ее исправлю, честно, но чуть позже
  
 int comp1 (const void * a, const void * b)
 {
