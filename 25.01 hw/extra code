@@ -1,0 +1,7 @@
+/* 
+Point &operator+(int val) 
+    { 
+        this->x=this->x+val; 
+        this->y=this->y+val; 
+        return *this; 
+    }  */
