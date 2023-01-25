@@ -39,7 +39,8 @@ class Apartment
 
 
      public: 
-     Apartment(){Human(), 0, 0 } 
+     Apartment(){ } 
+      
      Apartment(const Apartment& other) 
     {   this->people = new Human[cap];  
         this->cap=other.cap; 
@@ -95,8 +96,9 @@ class Apartment
     }
    }
      
-     void setHum(Human val) {this->Human} 
-     ~Apartment(){ delete []tmp; } 
+    /* void setHum(Human val, int i) {this->people[i].SetName(val.GetFullname()); }  */
+
+     ~Apartment(){} 
 
 }; 
 

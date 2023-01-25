@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <string>
 //что такое эти ваши inline ф-ии?
 class Telephone
 {   
@@ -6,13 +7,15 @@ class Telephone
     std::string surname; 
     std::string name; 
     std::string sec_name; 
-    unsinged int *home_num; 
-    unsinged int *mob_num; 
-    unsinged int *rab_num; 
+      int *home_num; 
+      int *mob_num; 
+      int *rab_num; 
 
-    public: 
+    public:  
 
-   explicit Telephone(string surname, string name, string sec_name, int id ) 
+    Telephone() {}
+
+   explicit Telephone(std::string surname, std::string name, std::string sec_name, int id ) 
     {   
         this->surname = new surname; 
         this->name = new name; 
@@ -44,12 +47,12 @@ int main()
      Telephone tel1; 
 
     int id; 
-    std::string *surname= new string; 
-    std::string *name = new string; 
-    std::string *sec_name= new string; 
-    unsinged int *home_num; 
-    unsinged int *mob_num; 
-    unsinged int *rab_num; 
+    std::string *surname= new std::string; 
+    std::string *name = new std::string; 
+    std::string *sec_name= new std::string; 
+      int *home_num; 
+      int *mob_num; 
+      int *rab_num; 
 
     std::cout<<"surname ";  std::cin>>*surname;  tel1.surname = *surname; 
 }

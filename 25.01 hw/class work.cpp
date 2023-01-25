@@ -22,8 +22,8 @@ class User {
        this->array_o = new int[other.size];
        this->size = other.size;
         for (int i = 0; i < this->size; ++i) {
-            this->array_o[i].setName(other.array_o[i].getName());
-            this->array_o[i].setAge(other.array_o[i].getAge());
+            this->array_o[i].setName(other.getName());
+            this->array_o[i].setAge(other.getAge());
         }
 
     }
@@ -45,12 +45,16 @@ class User {
         std::cout<<array_o[i]; 
     }
     void print_avg_arr() {
-        // вывести среднее значение arr 
-        int * sum = new int{0}; 
+        // вывести среднее значение arr  
+        int * sum = new int;  
+        *sum=0; 
         for (int i=0; i<this->size; ++i) 
-        { sum+=array_o[i]; } 
+        { sum+=array_o[i]; }  
 
-        std::cout<<"Avg "<<sum/(this->size)<<std::endl; 
+        double *avg = new double; 
+        *avg = sum/(*(this->size)); 
+
+        std::cout<<"Avg "<<avg<<std::endl; 
     }
 
     void add_to_arr(int val) {
@@ -67,7 +71,7 @@ class User {
     void setName(std::string name) { this->name = name; }
     void setAge(int age) { this->age = age; } 
 
-    ~User() {  delete [] array_o}
+    ~User() {  delete [] array_o; }
 };
 
 
