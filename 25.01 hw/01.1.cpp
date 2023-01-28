@@ -2,6 +2,7 @@
 #include <string> 
 
 
+
 class Human
 { 
    std::string fullname;  
@@ -105,7 +106,9 @@ class Apartment
    void print()
    {
     for (int i=0; i<fam; ++i )
-    std::cout<<people[i]<<" "; 
+     { std::cout<<people[i].GetFullname(); 
+       std::cout<<" "; 
+       std::cout<<people[i].GetAge(); }
 
     std::cout<<"\n"; 
    }
@@ -127,52 +130,38 @@ class House
 { 
     private: 
     int id; 
-    int size; 
+    int size1;
+    int size2;
     int cap; 
-    Apartment *podezd; 
+    Apartment **podezd; 
 
     public: 
     
     House() {}; 
 
-    House(const House&  other) 
-    {
-        this->size = size; 
-        this->cap=cap; 
-        this->podezd = new Apartment [ cap]; 
-        
-         for (int i=0; i<this->size; ++i ) 
-        {
-            this->podezd[i] = Apartment(other.podezd[i].getSize(), other.podezd[i].getCap()); 
-            id++; 
-
-        }
-    }  
-
-    House(Apartment * podezd, int size, int cap)
+    House(Apartment ** podezd, int size, int cap)
     {
         this->cap = cap; 
-         this->size=size; 
+         this->size1 = size1; 
+        this->size2 = size2; 
          id++; 
-        this->podezd = new Apartment [cap];  
-        for (int i=0; i<this->size; ++i ) 
-        {
-            this->podezd[i] = podezd[i]; 
+        this->podezd = new Apartment *[this->cap];  
+        for (int i=0; i<this->size1; ++i ) 
+        {   
+            podezd[i]=new Apartment[this->cap]; 
+            for (int j=0; j<this->size2; ++j)
+            {
+              this->podezd[i][j] = podezd[i][j]; 
+            }
+            
+
         }
     } 
 
     Apartment &operator[] (int index) 
     {
-        return this->podezd [index]; 
+        return *(this->podezd [index]); 
     }   
-
-    void print()
-   {
-    for (int i=0; i<size; ++i )
-    std::cout<<podezd[i]<<" "; 
-
-    std::cout<<"\n"; 
-   }  
 
     int getId()
     { return id; } 
@@ -197,6 +186,7 @@ int main()
     //here we go to the apart-part  
 
     Human *people = new Human[4] {one, two, tree, tree_cop}; 
+    Human *people_1 = new Human[4] {one, Human("Atsumu", 18), Human("Kiri zhena, Kiri zhena bednaya shenchina", 99), Human("emae", 9)}; 
     /*Apartment <Human> peop(people, 4);*/ 
 
     Apartment one_one; 
@@ -208,6 +198,13 @@ int main()
     std::cout<<"two_two_cop\n"; 
     two_two_cop.print(); 
     std::cout<<"two_two\n"; 
-    two_two.print(); 
+    two_two.print();  
+    
+    Apartment chto_eto (people, 8, 4); 
+     Apartment chto_eto2(people_1, 8, 4);  
+    
+    Apartment **podezdik = new Apartment*[2][4]{chto_eto, chto_eto2}; 
+    
+    House HOCHUSPAT(1, 2, 4, 8, *podezdik); 
     
 }
