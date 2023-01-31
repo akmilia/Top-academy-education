@@ -13,14 +13,14 @@ class Overcoat
 
    Overcoat (){}
 
-   /*Overcoat(const Overcoat& other) 
+   Overcoat(const Overcoat& other) 
    {
          this->prize = other.getPrize(); 
          this->size = other.getSize(); 
          this->typ=other.getType();  
          this->firm = other.getFirm(); 
-   } */
-   Overcoat(const Overcoat &other) : Overcoat(other.prize, other.size, other.typ, other.firm) {}
+   } 
+   //Overcoat(const Overcoat &other) : Overcoat(other.prize, other.size, other.typ, other.firm) {}
 
    Overcoat(std::string firm)
    { 
