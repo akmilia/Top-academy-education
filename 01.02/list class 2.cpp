@@ -56,8 +56,6 @@ public:
 
    void add_begin(T val) 
    {    
-
-    
         // tmp
         // head->next->next->null
 
@@ -77,12 +75,11 @@ public:
    T &get_index(int index)
    {  
     node*i = head; 
-      while (i->next != index) 
+      while (*(i->next)!= index) 
       { 
           i = i->next; 
       } 
-
-      return i; 
+      return *i; 
    }
 }; 
 
