@@ -54,7 +54,7 @@ int main()
 {
    Flat <int>  odin(); 
    Flat <int>  dva(); 
-   Flat <double>tri ();  
+   Flat <double> tri ();  
    Flat <double> chetire(tri); 
 
 }

@@ -1,93 +1,10 @@
 #include <iostream>
-
+#include <string> 
+#include <ctime> 
 template <typename type> 
 class Array
 {
-
-}; 
-
-int main(int argc, char const *argv[])
-{
-
-} 
-
-#include <iostream> 
-
-class Point 
-{
     private: 
-    int x; 
-    int y;  
-
-    public:
-
-    Point(){} 
-
-    Point(const Point &other) : Point (other.x, other.y) {} 
-
-    Point(int x, int y) 
-    {
-        this->x=x; 
-        this->y=y; 
-    } 
-
-    Point &operator=(const Point &other)
-    { 
-        this->x=other.x; 
-        this->y=other.y;  
-        return *this; 
-    }  
-
-    Point operator+(int val) const
-    {
-        return Point(this->x +val, this->y + val);
-    }
-
-    /*Point &operator+(const Point &other)
-    {
-        this->x=this->x + other.x; 
-        this->y=this->y + other.y; 
-        return *this; 
-    } */ 
-    Point operator+(const Point &other) const
-    { 
-        return Point(this->x +other.x, this->y + other.y);  
-    }
-
-    int getX() const
-    { 
-         return this->x; 
-    }
-    
-    int getY() const
-    { 
-         return this->y; 
-    } 
-
-    void setX(int val) 
-    {
-        this->x=val; 
-    } 
-
-    void setY(int val) 
-    {
-        this->y=val; 
-    }
-    
-};  
-
-std::ostream &operator<< (std::ostream &out, const Point&point)
-{ 
-     std::cout<<" ( "<<point.getX()<<", "<<point.getY()<<" )";  
-
-     return out; 
-}  
-
-
-template <typename type>  
-class Array
-{
- private: 
     type* arr; 
     int size; 
     int cap; 
@@ -103,7 +20,15 @@ class Array
         this->y=0; 
     }  
 
-    Array(const Array &other) : Array(other.arr, other.size) {}
+    Array(const Array &other) : Array(other.arr, other.size) {}  
+
+     /*Array &operator=(const Array &other)
+    {   
+        for (int i=0; i<this->size; i++) 
+        {
+        this->arr[i]=arr[i]; }
+        return *this; 
+    }  */
 
     Array(const type* arr, int size)
     {   
@@ -117,20 +42,46 @@ class Array
             this->arr[i]=arr[i]; 
         } 
 
-    }   
+    }    
 
-   /* void print() 
-    {
-        std::cout<<"[ "; 
-        for (int i=0; i<this->size; ++i)
+    void zapol()
+    {   
+        std::cout<<"Enter your array\n"; 
+        for (int i=0; i<this->size; ++i) 
         {
-            std::cout<<this->arr[i]; 
-            if (i!=size -1)
-            {
-                std::cout<<" , ";             }
+            std::cin>>(this->arr[i]); 
         }
-    } */
+    } 
+     
+     void zapol_rand()
+    {   
+        std::cout<<"Enter your array\n"; 
+        for (int i=0; i<this->size; ++i) 
+        {
+            this->arr[i] = rand()%100; 
+        }
+    }  
 
+    type max()
+    {
+       type max = this-> arr[0]; 
+         for (int i=0; i<this->size; ++i) 
+        {
+            if (this->arr[i] >  max) 
+            max = this->arr[i]; 
+        } 
+        return max; 
+    }
+     type min ()
+    {
+       type min  = this-> arr[0]; 
+         for (int i=0; i<this->size; ++i) 
+        {
+            if (this->arr[i] >  min) 
+            min = this->arr[i]; 
+        } 
+        return min; 
+    }
     type &operator[] (int index) 
     {
         return this->arr[index]; 
@@ -185,39 +136,34 @@ class Array
        }  
     } 
 
-    void plus_all(type val)
-    {
-        for (int i=0; i<this->size; i++) 
-        {
-            arr[i].setX(arr[i].getX() + val.getX()); 
-            arr[i].setY(arr[i].getY() + val.getY());
-        }
-    }  
-
     void operator+(type val) 
     {
         for (int i=0; i<this->size; i++) 
         {
-            arr[i].setX(arr[i].getX() + val.getX()); 
-            arr[i].setY(arr[i].getY() + val.getY());
+            arr[i]+=val; 
         }
     }
     
-    void minus_all(type val)
-    {
-        for (int i=0; i<this->size; i++) 
-        {
-            arr[i].setX(arr[i].getX() - val.getX()); 
-            arr[i].setY(arr[i].getY() - val.getY());
-        }
-    }  
-
     void operator-(type val) 
     {
         for (int i=0; i<this->size; i++) 
         {
-            arr[i].setX(arr[i].getX() - val.getX()); 
-            arr[i].setY(arr[i].getY() - val.getY());
+            arr[i]-=val; 
+        }
+    } 
+
+    void operator*(type val) 
+    {
+        for (int i=0; i<this->size; i++) 
+        {
+           arr[i]*=val; 
+        }
+    } 
+    void operator/(type val) 
+    {
+        for (int i=0; i<this->size; i++) 
+        {
+            arr[i]/=val; 
         }
     }
   
@@ -226,7 +172,10 @@ class Array
     delete [] arr; 
     }
 
-};   
+};  
+
+  
+
 
 template<typename type> 
 std::ostream &operator<< (std::ostream &out, Array<type> array)
@@ -244,61 +193,36 @@ std::ostream &operator<< (std::ostream &out, Array<type> array)
      return out; 
 }  
 
-
-template <typename T> 
-void print_any( T val) 
+int main(int argc, char const *argv[])
 {
-    std::cout<<val+val<<"\n"; 
+      srand(time(NULL)); 
 
-} 
-/*void print_any(const T& val) 
-{
-    std::cout<<val<<"\n"; 
+        int arr[5] {1, 2, 3, 4, 5}; 
+    Array<int> template_array(arr, 5); 
 
-}
-*/ 
-
-int main(int argc, char const *argv[]) 
-{ 
-    /*Point a (6, 5); 
-    Point b (4, 1); 
-
-    a=a+b; 
-    std::cout<<a<<"\n";  */
-    
-    Point points[3] {Point(1, 2), Point(4, 7), Point(3, 9)};  
-
-     /*int arr[5] {1, 2, 3, 4, 5}; 
-    Array<int> template_array(arr, 5); */ 
-
-    Array<Point> templatep_array(points, 3); 
-
-    templatep_array.add_back(Point(8, 11)); 
+    template_array.add_back(9); 
     std::cout<<"+ 1 элемент на конце\n"; 
-    std::cout<<templatep_array<<"\n\n"; 
+    std::cout<<template_array<<"\n\n"; 
      
-    templatep_array.del_index(3); 
+    template_array.del_index(3); 
     std::cout<<"Элемент номер три должен сдо\n"; 
-    std::cout<<templatep_array<<"\n\n";  
+    std::cout<<template_array<<"\n\n";  
 
-    templatep_array.add_by_index(Point(9, 7), 2);
-    std::cout<<"На втором месте теперь стоит Point(9, 7), а весь предыдущий массив, начиная с него, съехал на +1\n";  
-    std::cout<<templatep_array<<"\n\n"; 
+    template_array.add_by_index(78,  2);
+    std::cout<<"На втором месте теперь стоит 78, а весь предыдущий массив, начиная с него, съехал на +1\n";  
+    std::cout<<template_array<<"\n\n"; 
   
-    templatep_array.plus_all(Point(10, 10));
-    std::cout<<"ВСЕ ЭЛЕМЕНТЫ ПО ВСЕМ ПАРАМЕТРАМ УВЕЛИЧИВАБТСЯ НА +10 \n"; 
-    std::cout<<templatep_array<<"\n\n";  
+    std::cout<<"ВСЕ ЭЛЕМЕНТЫ  УВЕЛИЧИВАБТСЯ НА +10 \n"; 
+    template_array+6; 
+    std::cout<<template_array<<"\n\n";   
 
-    templatep_array+Point(5, 5); 
-    std::cout<<templatep_array<<"\n\n";   
+    
+    std::cout<<"ВСЕ ЭЛЕМЕНТЫ УМЕНЬШАЮТСЯ 15 \n";
+    template_array-10; 
+    std::cout<<template_array<<"\n\n";  
 
-    templatep_array.minus_all(Point(15, 15));
-    std::cout<<"ВСЕ ЭЛЕМЕНТЫ ПО ВСЕМ ПАРАМЕТРАМ УМЕНЬШАЮТСЯ 15 \n"; 
-    std::cout<<templatep_array<<"\n\n";  
-
-    templatep_array-Point(5, 5); 
-    std::cout<<templatep_array<<"\n\n";  
-
-
-    return 0;  
 } 
+
+ 
+
+
