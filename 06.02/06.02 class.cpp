@@ -1,7 +1,7 @@
 #include <iostream> 
 #include <ctime>
 
-
+// emae 
 void print (int a, int b, int **mas) 
 {
     for (int i = 0; i < a; i++)  
@@ -43,4 +43,8 @@ int main()
 
    print(a, b, mas); 
    std::cout<<s/(1.0*a*b); 
+
+   for (int i = 0; i < b; i++)  
+    delete[] mas[i]; 
+    delete[] mas; 
 }
