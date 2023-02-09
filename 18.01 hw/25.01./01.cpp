@@ -3,15 +3,15 @@
 
 class Human
 {
-    std::string *name = new string("Ivan"); 
-    std::string *surname = new string("Ivanov"); 
+    std::string *name = new std::string("Ivan"); 
+    std::string *surname = new std::string("Ivanov"); 
 
     public: 
 
     Human(std::string *name,  std::string *surname) //конструктор 
     {
-        this->name = *name; 
-        this->surname = *surname; 
+        *(this->name) = *name; 
+        *(this->name) = *surname; 
     };  
       
 
@@ -28,12 +28,12 @@ class Human
     
     void SetName(std::string *name) 
     {
-        this->name=*name; 
+        *(this->name)=*name; 
     } 
     
     void SetSurname(std::string *surname) 
     {
-        this->surname=*surname; 
+        *(this->name)=*surname; 
     }
     
     ~Human()
@@ -47,7 +47,7 @@ class Human
 class Apartment 
 {    
      int k =0; 
-     Human *hum_list = new Human[k];  
+     Human *hum_list;  
 
      Apartment() 
      {
@@ -63,9 +63,11 @@ class House
 }; 
 
 int main()
-{
-   Human Anna("Anna", "a"); 
-   
+{  
+    std::string an = "Anna"; 
+     std::string sur_an = "An";
+
+   Human Anna(&an, &sur_an); 
 
 } 
 
