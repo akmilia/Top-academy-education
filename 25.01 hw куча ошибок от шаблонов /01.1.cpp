@@ -203,7 +203,7 @@ int main()
     Apartment chto_eto (people, 8, 4); 
      Apartment chto_eto2(people_1, 8, 4);  
     
-    Apartment **podezdik = new Apartment*[2][4]{chto_eto, chto_eto2}; 
+    Apartment **podezdik = new Apartment*[2][4]{*chto_eto, *chto_eto2}; 
     
     House HOCHUSPAT(1, 2, 4, 8, *podezdik); 
     
