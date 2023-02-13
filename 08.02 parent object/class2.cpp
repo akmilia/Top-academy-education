@@ -55,12 +55,13 @@ class SaveToFile : public SuperCalc
     public: 
   void save(std::string class2_dop) 
   { 
-  std::ofstream fout; 
+   std::ofstream fout; 
+
    fout.open(class2_dop); 
 
    if (fout.is_open()) 
    { 
-        fout<<line; 
+        fout<<getLastOperation(); 
     } 
    else std::cout<<"The file curently is not open\n"; 
   }
@@ -118,5 +119,5 @@ int main()
 
     SaveToFile save_file; 
     std::string class2_dop; 
-    save_file.save(class2_dop); 
+    save_file.save(class2_dop);  
 }
