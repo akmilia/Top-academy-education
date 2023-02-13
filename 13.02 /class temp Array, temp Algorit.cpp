@@ -69,7 +69,11 @@ class Array
     }  
 
     
-    const T &operator[]   (int i ) 
+    T &operator[]   (int i ) 
+    { 
+        return arr[i]; 
+    } 
+    const T &operator[]   (int i ) const
     { 
         return arr[i]; 
     } 
@@ -120,9 +124,9 @@ class Algorithm
     //T *arr; 
 
     public: 
-    void print (const T &arr, const int size) const
+    void print (T &arr, const int size) const
  { 
-      for (int i=1; i< size; ++i)  
+      for (int i=0; i< size; ++i)  
       std::cout<<arr[i]<<"  "; 
 
       std::cout<<"\n"; 
@@ -132,7 +136,7 @@ class Algorithm
  {   
     T *max = new T;
     *max = arr[0];  
-    for (int i=1; i< size; ++i) 
+    for (int i=0; i< size; ++i) 
     {
         if (arr[i]>*max) 
         *max = arr[i]; 
@@ -151,7 +155,14 @@ class Algorithm
     }  
 
     return *min; 
- }
+ } 
+
+  T * sort(const T &arr, int size)  
+  { 
+    qsort(&arr, size); 
+
+    return *arr; 
+  }
 };  
 
 void zapol(int size, int *arr)
@@ -180,7 +191,7 @@ int main(int argc, char const *argv[])
     Array<int> more(arr, 5);
     Algorithm<int * > alg;
     Algorithm<Array<int> > alg_arr;
-    alg.print(arr, 5);
+    //alg.print(arr, 5);
     alg_arr.print(more, more.getSize());
 
     double arr_1[7] {1.3, 2, 3.89, 4.0, 5.5, 0, 17.9  }; 
