@@ -3,109 +3,60 @@ using namespace std;
 const int n=5; 
 //перегрузка функции - когда мы пишем 1 и ту же фу-ию, но с разными аргументами
 //т.е. пишется несколько функции для разных типов данных
-//done 
+//done хуядан - тебя слово класс в задании  не смущает  
 
 template <typename T> 
-void print_any_arr(T arr[][n]) {
-    for (int i=0; i<n ; i++) {
-       for (int j=0;  j<n; j++) {
+class Array 
+{
+   private:
+   T *arr; 
+   int zize; 
+   int cap; 
+
+
+   public: 
+   
+
+   void print_any_arr(T arr[]) {
+    for (int i=0; i<this->zize ; i++) {
+       
            cout<<arr[i][j]<<"\t"; 
-           
-       }   
-       cout<<"\n"; 
-    } 
-}  
+    }  
+     cout<<"\n"; 
+    }    
 
-void init_arr (int arr[][n]) 
-{
-    for (int i=0; i<n ; i++) {
-       for (int j=0;  j<n; j++) {
+    void init_arr (T arr[]) 
+    {
+    for (int i=0; i<this->zize ; i++) {
            arr[i][j]= rand()% 100; 
-           
        }   
-    }
-}
+    } 
 
-void init_arr (double matrix[][n]) 
-{
-    for (int i=0; i<n ; i++) {
-       for (int j=0;  j<n; j++) {
-           matrix[i][j]= double(rand()% 1000)/10; 
-       }   
-    }
-} 
 
-void init_arr (char kurt[][n]) 
-{
-    for (int i=0; i<n ; i++) {
-       for (int j=0;  j<n; j++) {
-           kurt[i][j]= (rand()% 100) + 32; 
-           
-       }   
-    }
-} 
-
-void find_max_min(int arr[][n]) 
+void find_max_min(T arr[]) 
 { 
     
-    int max = arr[0][0]; 
-    int min = arr[n-1][n-1]; 
+    int max = arr[0]; 
+    int min = arr[this->zize-1]; 
     
-    for (int i=0; i<n ; i++) {
+    for (int i=0; i<this->zize ; i++) {
         for (int j=0;  j<n; j++) { 
             if (i==j) 
             {
-                if (arr[i][j]> max) max=arr[i][j];
-                if (arr[i][j]< min) min=arr[i][j];
+                if (arr[i]> max) max=arr[i];
+                if (arr[i]< min) min=arr[i];
             }
        }   
     } 
     cout<<"Max = "<<max<< " Min = "<<min<<"\n"; 
 } 
 
-void find_max_min(double ar[][n]) 
-{ 
-    
-    double max = ar[0][0]; 
-    double min = ar[n-1][n-1]; 
-    
-    for (int i=0; i<n ; i++) {
-        for (int j=0;  j<n; j++) { 
-            if (i==j) 
-            {
-                if (ar[i][j]> max) max=ar[i][j];
-                if (ar[i][j]< min) min=ar[i][j];
-            }
-       }  
-    } 
-    cout<<"Max = "<<max<< " Min = "<<min<<"\n"; 
-}  
-
-void find_max_min(char a[][n]) 
-{ 
-    
-    char max = a[0][0]; 
-    char min = a[n-1][n-1]; 
-    
-    for (int i=0; i<n ; i++) {
-        for (int j=0;  j<n; j++) { 
-            if (i==j) 
-            {
-                if (a[i][j]> max) max=a[i][j];
-                if (a[i][j]< min) min=a[i][j];
-            }
-       }   
-    } 
-     cout<<"Max = "<<max<< " Min = "<<min<<"\n"; 
-} 
-
-template <typename Type> 
-void qsortRecursive(Type *a, int n) {
+void qsortRecursive(T *a, int n) {
     //Указатели в начало и в конец массива
     int i = 0;
     int j = n - 1;
     
-    Type mid = a[n/ 2];
+    T mid = a[n/ 2];
 
     //Делим массив
     do {
@@ -142,13 +93,12 @@ void qsortRecursive(Type *a, int n) {
     }
 }
 
-template <typename Type> 
-void sort_stroki(Type a[][n]) 
+void sort_stroki(T a[][n]) 
 {   
     for (int i=0; i<n ; i++) 
     {   
         
-        Type *tmp =new Type[n]; 
+        T *tmp =new T[n]; 
         for (int j=0; j<n; j++) 
         {
          tmp[j]=a[i][j];  
@@ -166,6 +116,8 @@ void sort_stroki(Type a[][n])
     }
          cout<<"\n";  
     } 
+    
+}; 
 
 int main()
 {   
