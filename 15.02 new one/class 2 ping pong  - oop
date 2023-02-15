@@ -1,0 +1,123 @@
+
+#include <iostream> 
+
+class Ball 
+{ private: 
+   
+   int x; 
+   int y; 
+   int dir_y; 
+   
+   public: 
+
+   Ball() : Ball (0, 0) { } 
+
+
+
+   int move(const Rocket &pl_1, const Rocket &pl_2 ) 
+   { 
+    x+=dir_x; 
+
+    if (pl_1.is_player(x, y))
+   }
+} ;  
+
+class Rocket 
+{ private:  
+  int x; 
+  int y; 
+
+  public: 
+
+  Rocket () : Rocket(0, 0) { }
+  Rocket (const Rocket &other) : Rocket (other.x, other.y) { }
+  Rocket (int x, int y)  
+  {
+      this->x = x;
+      this->y = y; 
+  } 
+
+  int getX( ) const  {return x; }
+  int getY( ) const {return y; } 
+
+  bool is_player(int x, int y) const 
+  { 
+    if (x==this->x) 
+     { 
+        if (y==this->y ||
+        y==this->y+1 ||
+        y==this->y-1) 
+        return true; 
+     }
+  }  else return false; 
+
+  void Up() {--y; }
+  void Down () {++y; }
+}; 
+
+class Pole
+{  private: 
+    const int h, w; 
+    Ball ball; 
+    Rocket pl_l, pl_r;  
+    bool _end = false; 
+   
+
+   public:
+   Pole() : Pole (41, 13) { } 
+   Pole(const Pole& other) { }  
+
+   Pole (int h, int w) : w (w), h(h),   ball (w/2, h/2), pl_l(w-2, h/2) { } 
+
+     void print()
+     { 
+      for (int i = 0; i <= y; ++i) {
+
+        for (int j = 0; j <= x; ++j) {
+            if (i == 0 || i == y) {
+                std::cout << "*";
+            } else if (j == 0 || j == x) {
+                std::cout << "*";
+            } else if (is_player(j, i, pl_x, pl_y)) {
+                std::cout << "|";
+            } else if (is_player(j, i, pl_2_x, pl_2_y)) {
+                std::cout << "|";
+            } else if (i == b_y && j == b_x) {
+                std::cout << "@";
+            } else {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    } 
+     }
+       void input()  
+      
+      { 
+
+      }
+       void work()
+       { 
+         ball.move(pl_1, pl_2, w, h); 
+       }
+       void clear() 
+       { 
+         system("clear " ); 
+       }
+
+
+       bool end( ) const  { return end }
+};  
+
+int main() 
+{ 
+   Pole pole; 
+
+    while (!end) {
+
+       pole.print() ;
+       pole.input(); 
+       pole.work(); 
+       pole.clear(); 
+    } 
+}
