@@ -1,9 +1,12 @@
 #include <iostream>
+#include <random>
+#include <chrono>
 using namespace std;
 const int n=5; 
 //перегрузка функции - когда мы пишем 1 и ту же фу-ию, но с разными аргументами
 //т.е. пишется несколько функции для разных типов данных
-//done хуядан - тебя слово класс в задании  не смущает  
+//проблема с реализацией рандома - я нашла вариант, как его сделать
+//но 1. числа какие-то неадекватные и скорее всего в связи с этим не работает поиск макс/мин
 
 template <typename T> 
 class Array 
@@ -14,44 +17,72 @@ class Array
    int cap; 
 
 
-   public: 
+   public:  
+     Array() : Array (*arr, n) {}
+
+    Array(const Array &other) : Array(other.arr, other.zize) {}
+
+    Array(const T* arr, int zize)
+    {   
+        this->cap=zize*2;  
+        this->zize=zize; 
+        this->arr=new T[this->cap]; 
+
+        for (int i =0; i < this->zize ; ++i) 
+        {
+            this->arr[i]=arr[i]; 
+        } 
+
+    }   
    
 
-   void print_any_arr(T arr[]) {
+   void print_any_arr() const {
     for (int i=0; i<this->zize ; i++) {
        
-           cout<<arr[i][j]<<"\t"; 
+           cout<<arr[i]<<"\t"; 
     }  
      cout<<"\n"; 
     }    
 
-    void init_arr (T arr[]) 
-    {
+    // T init_arr () 
+    // { 
+
+    // for (int i=0; i<this->zize ; i++) {
+    //        static std::mt19937 gen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    // std::uniform_real_distribution<double> distribution(1, 10);
+    // return distribution(gen);
+    // }
+    // }  
+   
+
+   T *init_arr () 
+    { 
+
     for (int i=0; i<this->zize ; i++) {
-           arr[i][j]= rand()% 100; 
-       }   
+           this->arr[i]= double(rand()%100- 50) ; 
+          
     } 
 
+    return this->arr; 
+    }  
 
-void find_max_min(T arr[]) 
+
+void find_max_min() 
 { 
     
-    int max = arr[0]; 
-    int min = arr[this->zize-1]; 
+    int max = this->arr[0]; 
+    int min = this->arr[this->zize-1]; 
     
     for (int i=0; i<this->zize ; i++) {
-        for (int j=0;  j<n; j++) { 
-            if (i==j) 
-            {
-                if (arr[i]> max) max=arr[i];
-                if (arr[i]< min) min=arr[i];
-            }
+           
+                if (this->arr[i]> max) max=this->arr[i];
+                if (this->arr[i]< min) min=this->arr[i];
+          
        }   
-    } 
     cout<<"Max = "<<max<< " Min = "<<min<<"\n"; 
 } 
 
-void qsortRecursive(T *a, int n) {
+void qsortRecursive(T *a, const int n =5) {
     //Указатели в начало и в конец массива
     int i = 0;
     int j = n - 1;
@@ -72,7 +103,7 @@ void qsortRecursive(T *a, int n) {
 
         //Меняем элементы местами
         if (i <= j) {
-            Type tmp = a[i];
+            T tmp = a[i];
             a[i] = a[j];
             a[j] = tmp;
 
@@ -93,59 +124,76 @@ void qsortRecursive(T *a, int n) {
     }
 }
 
-void sort_stroki(T a[][n]) 
-{   
-    for (int i=0; i<n ; i++) 
-    {   
+// void sort_stroki() 
+// {   
+//     for (int i=0; i<this->zize ; i++) 
+//     {   
         
-        T *tmp =new T[n]; 
-        for (int j=0; j<n; j++) 
-        {
-         tmp[j]=a[i][j];  
-        } 
+//         T *tmp =new T[n]; 
+//         for (int j=0; j<this->zize ; j++) 
+//         {
+//          tmp[j]=arr[i][j];  
+//         } 
         
-         qsortRecursive(tmp, n);  
+//          qsortRecursive(tmp, n);  
          
-         for (int k=0; k<n; k++ )
-         {  
-            cout<<tmp[k]<<" \t";  
-         }
+//          for (int k=0; k<this->z                                                                                                                                        ize ; k++ )
+//          {  
+//             cout<<tmp[k]<<" \t";  
+//          }
          
-          cout<<" \n"; 
-        delete tmp; 
-    }
-         cout<<"\n";  
+//           cout<<" \n"; 
+//         delete tmp; 
+//     }
+//          cout<<"\n";  
+//     }  
+
+    void operator+(T val) 
+    {
+        for (int i=0; i<this->zize; i++) 
+            this->arr[i]+=val; 
+        
     } 
-    
+
+    void operator-(T val) 
+    {
+        for (int i=0; i<this->zize; i++) 
+            this->arr[i]-=val; 
+        
+    } 
+
+
+     int getzize() 
+    {return zize; } 
+    ~Array()
+   {
+    delete [] arr; 
+    }
 }; 
 
 int main()
 {   
     srand(time (NULL)); 
-    int arrint[n][n]; 
-    double arrdoub [n][n]; 
-    char arrchar [n][n]; 
+
+    // int n; 
+    // std::cout<<"Enter the zizes "; cin>>n;  
+
+    int arrint[n]; 
+    double arrdoub [n]; 
     
-    init_arr(arrint); 
-    print_any_arr(arrint);  
-    cout<<"\n"; 
     
-    init_arr(arrdoub); 
-    print_any_arr(arrdoub); 
-    cout<<"\n"; 
+    Array <int> arint(arrint, n ); 
+    Array <double> ardb(arrdoub, n); 
     
-    init_arr(arrchar); 
-    print_any_arr(arrchar); 
-    cout<<"\n"; 
-    
-    find_max_min(arrint); 
-    find_max_min(arrdoub); 
-    find_max_min(arrchar); 
-    
-    cout<<"Sorted arrays int, double, char \n"; 
-    sort_stroki(arrint); 
-    sort_stroki(arrdoub);  
-    sort_stroki(arrchar);
-    
-    return 0;
+    arint.init_arr(); 
+    arint.print_any_arr(); 
+    arint.find_max_min(); 
+    arint + 20; 
+    cout<<" \n"; 
+
+    ardb.init_arr(); 
+    ardb.print_any_arr(); 
+    ardb.find_max_min(); 
+    arint + 20; 
+
 }
