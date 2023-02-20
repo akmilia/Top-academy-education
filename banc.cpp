@@ -55,16 +55,16 @@ class Clinic
     public:  
 
     Clinic () { }
-    Clinic ( int length, VetClinic *_vet_cl) 
+    Clinic ( int length, VetClinic *_vet_cl__) 
     { 
          this->length = length; 
          this->capasity = length*2; 
 
-        // _vet_cl = new VetClinic [this->capasity];  
+        _vet_cl = new VetClinic [this->capasity];  
 
          for (int i=0; i < this->length; i ++) 
          { 
-            this->_vet_cl[i] = _vet_cl[i]; 
+            this->_vet_cl[i] = _vet_cl__[i]; 
          }
 
     } 
@@ -86,7 +86,7 @@ class Clinic
             this-> _vet_cl[length].setName(val.getName());  
             this-> _vet_cl[length].setBrid(val.getBrid());  
             this-> _vet_cl[length].setAge(val.getAge());  
-            length++; 
+            this->length++; 
         }
     } 
 
@@ -99,7 +99,7 @@ class Clinic
            this-> _vet_cl[0].setName(val.getName());  
             this-> _vet_cl[0].setBrid(val.getBrid());  
             this-> _vet_cl[0].setAge(val.getAge());  
-            length++; 
+            this->length++; 
         }
     }  
 
@@ -151,7 +151,7 @@ class Clinic
     } 
     
      int getLength() const {return this->length; } 
-      int getCapasity() const {return this->capasity; } 
+    int getCapasity() const {return this->capasity; } 
 
 
     ~Clinic ( ) { delete []_vet_cl; }
@@ -173,6 +173,4 @@ int main()
 
     VetClinic four ("Ron", "rat", 13); 
     _vet.add_front( four); 
-
-
 }

@@ -5,6 +5,7 @@
         "bit": "cpp",
         "*.tcc": "cpp",
         "cctype": "cpp",
+        "chrono": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
         "cstdarg": "cpp",
@@ -28,6 +29,7 @@
         "numeric": "cpp",
         "optional": "cpp",
         "random": "cpp",
+        "ratio": "cpp",
         "string": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
@@ -45,8 +47,6 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp",
-        "chrono": "cpp",
-        "ratio": "cpp"
+        "typeinfo": "cpp"
     }
 }
