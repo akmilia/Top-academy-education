@@ -67,7 +67,7 @@ class Cats : public Animals
 
    void operator+(int x) 
    { 
-       if (is_healthy) 
+       if (is_healthy()) 
        std::cout<<"The cat doesnt need any weight changes\n"; 
        else  
        weight += x;  
