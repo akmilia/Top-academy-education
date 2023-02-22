@@ -59,28 +59,33 @@ void print_arr( const std::vector<int>* array)
  
 void del_by_val(std::vector<int>* array, int val)  
 {   
-    int tmp=0; 
+    int tmp=-1; 
     for (int i=0; i< array->size(); ++i) 
     {  if (array->at(i) == val)  
         tmp = i; 
       }  
 
-    if (tmp!=0) 
-    array->erase(tmp); 
-    else throw "No such element!\n"; 
-    
-}
+    if (tmp!=-1) 
+    array->erase(array->begin() + tmp); 
+    else throw "No such element!\n";
+} 
+
+// void sort()
+// {
+
+// }
+
  
 
 void choose_com(std::vector<int>* array)
 { 
-    int v;  
+    int v, val;  
 
     std::cout << "Выберите команду \n";
     std::cout << "1. Все делители \n";
     std::cout << "2. Остаток от деления \n";
     std::cout << "3. Вывод массива \n";
-    std::cout << "4. Поиск элемена \n";
+    std::cout << "4. Поиск элемента \n";
     std::cout << "5. Удаление элемента  по значению \n";
     std::cout << "6. Удаление элемента  по индексу \n";
     std::cout << "-1. Выход \n";
@@ -92,7 +97,7 @@ void choose_com(std::vector<int>* array)
     switch (v)
     {
     case 1: 
-        for (int i=0; i< array->size(); ++i) 
+        for (int i=0; i< *(array->size()); ++i) 
     {   print__all_del(array->at(i));  
         std::cout<<"\n";   }
        
@@ -106,7 +111,11 @@ void choose_com(std::vector<int>* array)
         print_arr(array); 
         break;
     case 4: 
+        {
+         std::cout<<"Enter the value \n"; std::cin>>val;   
+        del_by_val(array, val); 
         
+        }
         break;
     case 5: 
         
