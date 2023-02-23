@@ -89,13 +89,11 @@ int main( )
    cat.sleep(); 
    cat + (-4); 
 
-
-
 }
  
 
 
- #include <iostream> 
+//#include <iostream> 
 // #include<string> 
 // class Animals
 // {
