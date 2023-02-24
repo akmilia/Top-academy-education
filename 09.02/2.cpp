@@ -2,8 +2,9 @@
 #include<string> 
 
 class List
-{
-   struct Node 
+{   
+    public:
+    struct Node 
     {
     std::string val;
      Node* next;
@@ -31,23 +32,26 @@ class List
     last = p;
    }  
 
-    void print() {
+    void print()
+     {
         if (is_empty()) return;
         Node* p = first;
         while (p) {
-            cout << p->val << " ";
+            std::cout << p->val << " ";
             p = p->next;
         }
-        cout << endl;
+        std::cout << "\n";
     }
-    };
+    }
+};
 
-int main() {
-    list l;
-    cout << l.is_empty() << endl;
+int main() 
+{
+    List l;
+    std::cout << l.is_empty() <<"\n";
     l.push_back("3");
-    l.push_back("123")    l.push_back("8");
-    cout << l.is_empty() << endl;
+    l.push_back("123");
+    std::cout << l.is_empty() << "\n";
     l.print();
     return 0;
 }
