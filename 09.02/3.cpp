@@ -33,10 +33,10 @@ class List
     
     bool is_empty() { return begin == nullptr;} 
 
-    int &get_index(int index)
+    int &get_index(const int index) 
    {  
     Node*i = begin; 
-      while (*(i->next) != index) 
+      while (*(i->next)!= index) 
       { 
           i = i->next; 
       } 
@@ -50,7 +50,7 @@ class List
             while (i->next != nullptr) {
                 i = i->next;
             }
-            i->next = new Node {val, nullptr};
+            i->next = new Node(val, nullptr){};
         }
         this->count += 1;
     } 
