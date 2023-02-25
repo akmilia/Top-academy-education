@@ -173,4 +173,7 @@ int main()
 
     VetClinic four ("Ron", "rat", 13); 
     _vet.add_front( four); 
+    
+    two.print_b(); 
+    _vet.print(); 
 }
